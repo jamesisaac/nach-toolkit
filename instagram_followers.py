@@ -11,7 +11,7 @@ instagram = ''
 # Your NAch API key
 nach_key = ''
 # Your NAch tracker ID
-nach_tracker = 2
+nach_tracker = 1
 
 def get_instagram_count():
     """Find the follower count via a regex query"""
