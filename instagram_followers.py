@@ -5,13 +5,14 @@ tracker logging number of Instagram followers
 import json
 import re
 import urllib2
+import base64
 
 # Your instagram username
 instagram_username = ''
 # Your NAch API key
 nach_key = ''
 # Your NAch tracker ID
-nach_tracker = 1
+nach_tracker = 0
 
 def get_instagram_count():
     """Find the follower count via a regex query"""
@@ -26,12 +27,16 @@ def get_instagram_count():
 
 def update_tracker(value):
     """POST the reading to NAch via the API"""
-    url = 'https://nachapp.com/api/trackers/%s/measures?_key=%s' % (nach_tracker, nach_key)
+    url = 'https://nachapp.com/api/trackers/%s/measures' % nach_tracker
     print 'API request: ' + url
     
     # Create a POST request
     values = { 'value': value }
     req = urllib2.Request(url, json.dumps(values))
+    
+    # Add auth header
+    authstring = base64.standard_b64encode('%s:' % nach_key)
+    req.add_header('Authorization', 'Basic %s' % authstring)
     
     # Send to the server and print the response
     response = urllib2.urlopen(req)
