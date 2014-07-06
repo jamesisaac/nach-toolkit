@@ -9,9 +9,9 @@ import base64
 
 # Your instagram username
 instagram_username = ''
-# Your NAch API key
+# Your Nach API key
 nach_key = ''
-# Your NAch tracker ID
+# Your Nach tracker ID
 nach_tracker = 0
 
 def get_instagram_count():
@@ -26,7 +26,7 @@ def get_instagram_count():
         print "ERROR: No regex match"
 
 def update_tracker(value):
-    """POST the reading to NAch via the API"""
+    """POST the reading to Nach via the API"""
     url = 'https://nachapp.com/api/trackers/%s/measures' % nach_tracker
     print 'API request: ' + url
     
